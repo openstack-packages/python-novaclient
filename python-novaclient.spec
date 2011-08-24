@@ -1,8 +1,8 @@
-%global bzrtag 83
+%global bzrtag 89
 
 Name:             python-novaclient
 Version:          2.6.1
-Release:          0.3.%{bzrtag}bzr%{?dist}
+Release:          0.4.%{bzrtag}bzr%{?dist}
 Summary:          Python API and CLI for OpenStack Nova
 
 Group:            Development/Languages
@@ -41,7 +41,7 @@ the OpenStack Nova API.
 This package contains auto-generated documentation.
 
 %prep
-%setup -q -n python-novaclient-%{version}
+%setup -q
 
 %patch1 -p1
 
@@ -70,6 +70,10 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Wed Aug 24 2011 Mark McLoughlin <markmc@redhat.com> - 2.6.1-0.4.89bzr
+- Update to latest upstream snapshot
+- Don't use %setup -n (#732694)
+
 * Mon Aug 22 2011 Mark McLoughlin <markmc@redhat.com> - 2.6.1-0.3.83bzr
 - Remove python-devel BR
 - Remove the openstack-novaclient sub-package
