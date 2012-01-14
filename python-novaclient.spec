@@ -2,7 +2,7 @@
 
 Name:             python-novaclient
 Version:          2.6.1
-Release:          0.4.%{bzrtag}bzr%{?dist}
+Release:          0.5.%{bzrtag}bzr%{?dist}
 Summary:          Python API and CLI for OpenStack Nova
 
 Group:            Development/Languages
@@ -70,6 +70,9 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Sat Jan 14 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.6.1-0.5.89bzr
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
 * Wed Aug 24 2011 Mark McLoughlin <markmc@redhat.com> - 2.6.1-0.4.89bzr
 - Update to latest upstream snapshot
 - Don't use %setup -n (#732694)
