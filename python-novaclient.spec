@@ -1,12 +1,12 @@
 Name:             python-novaclient
 Version:          2012.1
-Release:          0.1%{?dist}
+Release:          0.2.e4%{?dist}
 Summary:          Python API and CLI for OpenStack Nova
 
 Group:            Development/Languages
 License:          ASL 2.0
 URL:              http://pypi.python.org/pypi/python-novaclient
-Source0:          http://launchpad.net/nova/essex/essex-3/+download/python-novaclient-%{version}~e3.tar.gz
+Source0:          http://launchpad.net/nova/essex/essex-4/+download/python-novaclient-%{version}~e4.tar.gz
 
 Patch1:           novaclient-remove-argparse-from-egg-requires.patch
 
@@ -68,6 +68,9 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Tue Mar 06 2012 Alan Pevec <apevec@redhat.com> 2012.1-0.2.e4
+- Update to essex-4
+
 * Fri Jan 27 2012 Pádraig Brady <P@draigBrady.com> - 2012.1-0.1.e3
 - Update to essex milestone 3
 
