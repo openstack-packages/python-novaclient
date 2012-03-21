@@ -82,7 +82,7 @@ rm -fr html/.doctrees html/.buildinfo
 
 * Wed Aug 24 2011 Mark McLoughlin <markmc@redhat.com> - 2.6.1-0.4.89bzr
 - Update to latest upstream snapshot
-- Don't use %setup -n (#732694)
+- Don't use %%setup -n (#732694)
 
 * Mon Aug 22 2011 Mark McLoughlin <markmc@redhat.com> - 2.6.1-0.3.83bzr
 - Remove python-devel BR
