@@ -1,6 +1,6 @@
 Name:             python-novaclient
 Version:          2012.1
-Release:          0.3.rc1%{?dist}
+Release:          0.4.rc1%{?dist}
 Summary:          Python API and CLI for OpenStack Nova
 
 Group:            Development/Languages
@@ -9,6 +9,7 @@ URL:              http://pypi.python.org/pypi/python-novaclient
 Source0:          http://launchpad.net/nova/essex/essex-rc1/+download/python-novaclient-%{version}~rc1.tar.gz
 
 Patch1:           novaclient-remove-argparse-from-egg-requires.patch
+Patch2:           horizon-ignore-cache-dir.patch
 
 BuildArch:        noarch
 BuildRequires:    python-setuptools
@@ -42,6 +43,7 @@ This package contains auto-generated documentation.
 %setup -q
 
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__python} setup.py build
@@ -68,6 +70,9 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Thu Mar 22 2012 Pádraig Brady <P@draigBrady.com> 2012.1-0.4.rc1
+- Avoid a horizon issue trying to write to /var/www (#801202)
+
 * Wed Mar 21 2012 Pádraig Brady <P@draigBrady.com> 2012.1-0.3.rc1
 - Update to essex-rc1
 
