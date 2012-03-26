@@ -71,6 +71,7 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Mon Mar 26 2012 Pádraig Brady <P@draigBrady.com> 2012.1-???
 - Include LICENSE (#732695)
 
 * Thu Mar 22 2012 Pádraig Brady <P@draigBrady.com> 2012.1-0.4.rc1
