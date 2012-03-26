@@ -62,6 +62,7 @@ rm -fr html/.doctrees html/.buildinfo
 
 %files
 %doc README.rst
+%doc LICENSE
 %{_bindir}/nova
 %{python_sitelib}/novaclient
 %{python_sitelib}/*.egg-info
@@ -70,6 +71,8 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+- Include LICENSE (#732695)
+
 * Thu Mar 22 2012 Pádraig Brady <P@draigBrady.com> 2012.1-0.4.rc1
 - Avoid a horizon issue trying to write to /var/www (#801202)
 
