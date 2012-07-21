@@ -1,6 +1,6 @@
 Name:             python-novaclient
 Version:          2012.2
-Release:          0.1.f1%{?dist}
+Release:          0.2.f1%{?dist}
 Summary:          Python API and CLI for OpenStack Nova
 
 Group:            Development/Languages
@@ -69,6 +69,9 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Sat Jul 21 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2012.2-0.2.f1
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
+
 * Wed Jun 13 2012 Pádraig Brady <P@draigBrady.com> 2012.2-0.1.f1
 - Update to folsom-1 release
 
