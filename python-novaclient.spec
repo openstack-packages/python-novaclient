@@ -1,6 +1,6 @@
 Name:             python-novaclient
 Version:          2012.2
-Release:          0.2.f1%{?dist}
+Release:          0.3.f1%{?dist}
 Summary:          Python API and CLI for OpenStack Nova
 
 Group:            Development/Languages
@@ -17,6 +17,7 @@ Requires:         python-argparse
 Requires:         python-simplejson
 Requires:         python-httplib2
 Requires:         python-prettytable
+Requires:         python-setuptools
 
 %description
 This is a client for the OpenStack Nova API. There's a Python API (the
@@ -69,6 +70,9 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Wed Aug 22 2012 Pádraig Brady <P@draigBrady.com> 2012.2-0.3.f1
+- Add dependency on python-setuptools (#849477)
+
 * Sat Jul 21 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2012.2-0.2.f1
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
