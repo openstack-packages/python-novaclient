@@ -1,14 +1,13 @@
 Name:             python-novaclient
-Version:          2012.2
-Release:          0.3.f1%{?dist}
+Epoch:            1
+Version:          2.8.0.26
+Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Nova
 
 Group:            Development/Languages
 License:          ASL 2.0
 URL:              http://pypi.python.org/pypi/python-novaclient
-Source0:          https://launchpad.net/nova/folsom/folsom-1/+download/python-novaclient-%{version}~f1.tar.gz
-
-Patch1:           novaclient-remove-argparse-from-egg-requires.patch
+Source0:          http://tarballs.openstack.org/%{name}/%{name}-%{version}.tar.gz
 
 BuildArch:        noarch
 BuildRequires:    python-setuptools
@@ -42,7 +41,8 @@ This package contains auto-generated documentation.
 %prep
 %setup -q
 
-%patch1 -p1
+# TODO: Have the following handle multi line entries
+sed -i '/setup_requires/d; /install_requires/d; /dependency_links/d' setup.py
 
 %build
 %{__python} setup.py build
@@ -52,9 +52,11 @@ This package contains auto-generated documentation.
 
 # Delete tests
 rm -fr %{buildroot}%{python_sitelib}/tests
+# Delete versioninfo file
+rm -fr %{buildroot}/usr/novaclient
 
 export PYTHONPATH="$( pwd ):$PYTHONPATH"
-sphinx-build -b html docs html
+sphinx-build -b html doc/source html
 
 # Fix hidden-file-or-dir warnings
 rm -fr html/.doctrees html/.buildinfo
@@ -70,6 +72,9 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Tue Sep 25 2012 Pádraig Brady <P@draigBrady.com> 1:2.8.0.26-1
+- Update to latest upstream release
+
 * Wed Aug 22 2012 Pádraig Brady <P@draigBrady.com> 2012.2-0.3.f1
 - Add dependency on python-setuptools (#849477)
 
