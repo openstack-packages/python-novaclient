@@ -1,7 +1,7 @@
 Name:             python-novaclient
 Epoch:            1
-Version:          2.8.0.26
-Release:          2%{?dist}
+Version:          2.9.0
+Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Nova
 
 Group:            Development/Languages
@@ -70,6 +70,9 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Thu Sep 27 2012 Pádraig Brady <P@draigBrady.com> 1:2.9.0-1
+- Update to latest upstream release (aligned with Folsom)
+
 * Tue Sep 25 2012 Pádraig Brady <P@draigBrady.com> 1:2.8.0.26-2
 - Update to latest upstream release
 
