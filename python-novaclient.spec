@@ -17,6 +17,7 @@ Requires:         python-simplejson
 Requires:         python-httplib2
 Requires:         python-prettytable
 Requires:         python-setuptools
+Requires:         python-iso8601
 
 %description
 This is a client for the OpenStack Nova API. There's a Python API (the
@@ -76,6 +77,7 @@ rm -fr html/.doctrees html/.buildinfo
 %changelog
 * Fri Dec 21 2012 Alan Pevec <apevec@redhat.com> 2.10.0-2
 - Include bash_completion file (#872544) (Alvaro Lopez Ortega)
+- Add dependency on python-iso8601 (#881515)
 
 * Mon Dec 03 2012 Alan Pevec <apevec@redhat.com> 2.10.0-1
 - Update to latest upstream release
