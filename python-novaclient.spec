@@ -1,7 +1,7 @@
 Name:             python-novaclient
 Epoch:            1
 Version:          2.10.0
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          Python API and CLI for OpenStack Nova
 
 Group:            Development/Languages
@@ -48,6 +48,9 @@ sed -i '/setup_requires/d; /install_requires/d; /dependency_links/d' setup.py
 %install
 %{__python} setup.py install -O1 --skip-build --root %{buildroot}
 
+mkdir -p %{buildroot}%{_sysconfdir}/bash_completion.d
+install -pm 644 tools/nova.bash_completion %{buildroot}%{_sysconfdir}/bash_completion.d/nova
+
 # Delete tests
 rm -fr %{buildroot}%{python_sitelib}/tests
 # Delete versioninfo file
@@ -65,11 +68,15 @@ rm -fr html/.doctrees html/.buildinfo
 %{_bindir}/nova
 %{python_sitelib}/novaclient
 %{python_sitelib}/*.egg-info
+%{_sysconfdir}/bash_completion.d
 
 %files doc
 %doc html
 
 %changelog
+* Fri Dec 21 2012 Alan Pevec <apevec@redhat.com> 2.10.0-2
+- Include bash_completion file (#872544) (Alvaro Lopez Ortega)
+
 * Mon Dec 03 2012 Alan Pevec <apevec@redhat.com> 2.10.0-1
 - Update to latest upstream release
 
