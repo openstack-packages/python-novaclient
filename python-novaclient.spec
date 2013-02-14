@@ -1,7 +1,7 @@
 Name:             python-novaclient
 Epoch:            1
 Version:          2.10.0
-Release:          2%{?dist}
+Release:          3%{?dist}
 Summary:          Python API and CLI for OpenStack Nova
 
 Group:            Development/Languages
@@ -74,6 +74,9 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:2.10.0-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
 * Fri Dec 21 2012 Alan Pevec <apevec@redhat.com> 2.10.0-2
 - Include bash_completion file (#872544) (Alvaro Lopez Ortega)
 - Add dependency on python-iso8601 (#881515)
