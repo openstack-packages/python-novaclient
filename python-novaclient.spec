@@ -1,13 +1,13 @@
 Name:             python-novaclient
 Epoch:            1
-Version:          2.10.0
-Release:          3%{?dist}
+Version:          2.11.1
+Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Nova
 
 Group:            Development/Languages
 License:          ASL 2.0
-URL:              http://pypi.python.org/pypi/python-novaclient
-Source0:          http://tarballs.openstack.org/%{name}/%{name}-%{version}.tar.gz
+URL:              http://pypi.python.org/pypi/%{name}
+Source0:          http://pypi.python.org/packages/source/p/%{name}/%{name}-%{version}.tar.gz
 
 BuildArch:        noarch
 BuildRequires:    python-setuptools
@@ -40,6 +40,9 @@ This package contains auto-generated documentation.
 %prep
 %setup -q
 
+# Remove bundled egg-info
+rm -rf python_novaclient.egg-info
+# let RPM handle deps
 # TODO: Have the following handle multi line entries
 sed -i '/setup_requires/d; /install_requires/d; /dependency_links/d' setup.py
 
@@ -74,6 +77,9 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Thu Mar 07 2013 Alan Pevec <apevec@redhat.com> 2.11.1-1
+- Update to latest upstream release
+
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:2.10.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
