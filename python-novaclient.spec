@@ -1,7 +1,7 @@
 Name:             python-novaclient
 Epoch:            1
 Version:          2.11.1
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          Python API and CLI for OpenStack Nova
 
 Group:            Development/Languages
@@ -18,6 +18,8 @@ Requires:         python-httplib2
 Requires:         python-prettytable
 Requires:         python-setuptools
 Requires:         python-iso8601
+Requires:         python-keyring
+Requires:         python-requests
 
 %description
 This is a client for the OpenStack Nova API. There's a Python API (the
@@ -77,6 +79,9 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Fri Mar 08 2013 Alan Pevec <apevec@redhat.com> 2.11.1-2
+- Add dependency on python-requests and python-keyring (#919337)
+
 * Thu Mar 07 2013 Alan Pevec <apevec@redhat.com> 2.11.1-1
 - Update to latest upstream release
 
