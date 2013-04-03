@@ -1,7 +1,7 @@
 Name:             python-novaclient
 Epoch:            1
-Version:          2.11.1
-Release:          2%{?dist}
+Version:          2.13.0
+Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Nova
 
 Group:            Development/Languages
@@ -11,15 +11,15 @@ Source0:          http://pypi.python.org/packages/source/p/%{name}/%{name}-%{ver
 
 BuildArch:        noarch
 BuildRequires:    python-setuptools
+BuildRequires:    python2-devel
 
 Requires:         python-argparse
-Requires:         python-simplejson
-Requires:         python-httplib2
-Requires:         python-prettytable
-Requires:         python-setuptools
 Requires:         python-iso8601
+Requires:         python-prettytable
+Requires:         python-requests >= 0.8
+Requires:         python-simplejson
 Requires:         python-keyring
-Requires:         python-requests
+Requires:         python-setuptools
 
 %description
 This is a client for the OpenStack Nova API. There's a Python API (the
@@ -53,7 +53,7 @@ sed -i '/setup_requires/d; /install_requires/d; /dependency_links/d' setup.py
 
 %install
 %{__python} setup.py install -O1 --skip-build --root %{buildroot}
-mv %{buildroot}/usr/novaclient/versioninfo %{buildroot}%{python_sitelib}/novaclient/versioninfo
+echo "%{version}" > %{buildroot}%{python_sitelib}/novaclient/versioninfo
 
 mkdir -p %{buildroot}%{_sysconfdir}/bash_completion.d
 install -pm 644 tools/nova.bash_completion %{buildroot}%{_sysconfdir}/bash_completion.d/nova
@@ -79,6 +79,11 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Wed Apr 03 2013 Jakub Ruzicka <jruzicka@redhat.com> 2.13.0-1
+- Update to upstream version 2.13.0. (#921769)
+- Update requires from tools/pip-requires.
+- versioninfo is gone from tarball, generate it.
+
 * Fri Mar 08 2013 Alan Pevec <apevec@redhat.com> 2.11.1-2
 - Add dependency on python-requests and python-keyring (#919337)
 
