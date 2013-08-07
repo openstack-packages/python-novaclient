@@ -1,7 +1,7 @@
 Name:             python-novaclient
 Epoch:            1
-Version:          2.13.0
-Release:          2%{?dist}
+Version:          2.14.1
+Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Nova
 
 Group:            Development/Languages
@@ -9,15 +9,24 @@ License:          ASL 2.0
 URL:              http://pypi.python.org/pypi/%{name}
 Source0:          http://pypi.python.org/packages/source/p/%{name}/%{name}-%{version}.tar.gz
 
+
+#
+# patches_base=2.14.1
+#
+Patch0001: 0001-Remove-runtime-dependency-on-python-pbr.patch
+
 BuildArch:        noarch
 BuildRequires:    python-setuptools
 BuildRequires:    python2-devel
+BuildRequires:    python-d2to1
+BuildRequires:    python-pbr
 
 Requires:         python-argparse
 Requires:         python-iso8601
 Requires:         python-prettytable
-Requires:         python-requests >= 0.8
+Requires:         python-requests
 Requires:         python-simplejson
+Requires:         python-six
 Requires:         python-keyring
 Requires:         python-setuptools
 
@@ -42,27 +51,38 @@ This package contains auto-generated documentation.
 %prep
 %setup -q
 
+%patch0001 -p1
+
+# We provide version like this in order to remove runtime dep on pbr.
+sed -i s/REDHATNOVACLIENTVERSION/%{version}/ novaclient/__init__.py
+
 # Remove bundled egg-info
 rm -rf python_novaclient.egg-info
 # let RPM handle deps
 # TODO: Have the following handle multi line entries
 sed -i '/setup_requires/d; /install_requires/d; /dependency_links/d' setup.py
+# Remove the requirements files so that pbr hooks don't add them
+# to distutils requiers_dist config.
+rm -rf {test-,}requirements.txt tools/{pip,test}-requires
+
 
 %build
 %{__python} setup.py build
 
 %install
 %{__python} setup.py install -O1 --skip-build --root %{buildroot}
-echo "%{version}" > %{buildroot}%{python_sitelib}/novaclient/versioninfo
 
 mkdir -p %{buildroot}%{_sysconfdir}/bash_completion.d
-install -pm 644 tools/nova.bash_completion %{buildroot}%{_sysconfdir}/bash_completion.d/nova
+install -pm 644 tools/nova.bash_completion \
+    %{buildroot}%{_sysconfdir}/bash_completion.d/nova
 
 # Delete tests
-rm -fr %{buildroot}%{python_sitelib}/tests
-
+rm -fr %{buildroot}%{python_sitelib}/novaclient/tests
 export PYTHONPATH="$( pwd ):$PYTHONPATH"
 sphinx-build -b html doc/source html
+sphinx-build -b man doc/source man
+
+install -p -D -m 644 man/nova.1 %{buildroot}%{_mandir}/man1/nova.1
 
 # Fix hidden-file-or-dir warnings
 rm -fr html/.doctrees html/.buildinfo
@@ -74,11 +94,19 @@ rm -fr html/.doctrees html/.buildinfo
 %{python_sitelib}/novaclient
 %{python_sitelib}/*.egg-info
 %{_sysconfdir}/bash_completion.d
+%{_mandir}/man1/nova.1.gz
 
 %files doc
 %doc html
 
 %changelog
+* Wed Aug 07 2013 Jakub Ruzicka <jruzicka@redhat.com> - 1:2.14.1-1
+- Update to upstream version 2.14.1.
+- New build requires: python-d2to1, python-pbr
+- New require: python-six
+- Remove runtime dependency on python-pbr.
+- Include new manpage.
+
 * Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:2.13.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
