@@ -1,6 +1,6 @@
 Name:             python-novaclient
 Epoch:            1
-Version:          2.14.1
+Version:          2.15.0
 Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Nova
 
@@ -11,9 +11,10 @@ Source0:          http://pypi.python.org/packages/source/p/%{name}/%{name}-%{ver
 
 
 #
-# patches_base=2.14.1
+# patches_base=2.15.0
 #
 Patch0001: 0001-Remove-runtime-dependency-on-python-pbr.patch
+Patch0002: 0002-Prevent-pbr-dependencies-handling.patch
 
 BuildArch:        noarch
 BuildRequires:    python-setuptools
@@ -27,6 +28,7 @@ Requires:         python-prettytable
 Requires:         python-requests
 Requires:         python-simplejson
 Requires:         python-six
+Requires:         python-babel
 Requires:         python-keyring
 Requires:         python-setuptools
 
@@ -52,18 +54,13 @@ This package contains auto-generated documentation.
 %setup -q
 
 %patch0001 -p1
+%patch0002 -p1
 
 # We provide version like this in order to remove runtime dep on pbr.
 sed -i s/REDHATNOVACLIENTVERSION/%{version}/ novaclient/__init__.py
 
 # Remove bundled egg-info
 rm -rf python_novaclient.egg-info
-# let RPM handle deps
-# TODO: Have the following handle multi line entries
-sed -i '/setup_requires/d; /install_requires/d; /dependency_links/d' setup.py
-# Remove the requirements files so that pbr hooks don't add them
-# to distutils requiers_dist config.
-rm -rf {test-,}requirements.txt tools/{pip,test}-requires
 
 
 %build
@@ -100,6 +97,11 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Thu Sep 19 2013 Jakub Ruzicka <jruzicka@redhat.com> 
+- Update to upstream 2.15.0
+- Add python-babel dependency
+- Nuke pbr deps handling in patch instead of this spec file
+
 * Wed Aug 07 2013 Jakub Ruzicka <jruzicka@redhat.com> - 1:2.14.1-1
 - Update to upstream version 2.14.1.
 - New build requires: python-d2to1, python-pbr
