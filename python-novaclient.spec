@@ -1,7 +1,7 @@
 Name:             python-novaclient
 Epoch:            1
-Version:          2.15.0
-Release:          1%{?dist}
+Version:          2.16.0
+Release:          2%{?dist}
 Summary:          Python API and CLI for OpenStack Nova
 
 Group:            Development/Languages
@@ -11,10 +11,9 @@ Source0:          http://pypi.python.org/packages/source/p/%{name}/%{name}-%{ver
 
 
 #
-# patches_base=2.15.0
+# patches_base=2.16.0
 #
 Patch0001: 0001-Remove-runtime-dependency-on-python-pbr.patch
-Patch0002: 0002-Prevent-pbr-dependencies-handling.patch
 
 BuildArch:        noarch
 BuildRequires:    python-setuptools
@@ -54,7 +53,6 @@ This package contains auto-generated documentation.
 %setup -q
 
 %patch0001 -p1
-%patch0002 -p1
 
 # We provide version like this in order to remove runtime dep on pbr.
 sed -i s/REDHATNOVACLIENTVERSION/%{version}/ novaclient/__init__.py
@@ -62,6 +60,8 @@ sed -i s/REDHATNOVACLIENTVERSION/%{version}/ novaclient/__init__.py
 # Remove bundled egg-info
 rm -rf python_novaclient.egg-info
 
+# Let RPM handle the requirements
+rm -f {,test-}requirements.txt
 
 %build
 %{__python} setup.py build
@@ -97,6 +97,9 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Wed Feb 26 2014 Jakub Ruzicka <jruzicka@redhat.com> 2.16.0-2
+- Update to upstream 2.16.0
+
 * Thu Sep 19 2013 Jakub Ruzicka <jruzicka@redhat.com> 
 - Update to upstream 2.15.0
 - Add python-babel dependency

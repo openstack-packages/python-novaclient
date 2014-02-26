@@ -1,11 +1,12 @@
-From 7d223685958931ec3d3833cd154314e5bd99de55 Mon Sep 17 00:00:00 2001
+From 56e2340aa95609ed229f177e1270adbd10154e18 Mon Sep 17 00:00:00 2001
 From: Jakub Ruzicka <jruzicka@redhat.com>
 Date: Wed, 7 Aug 2013 19:35:08 +0200
 Subject: [PATCH] Remove runtime dependency on python-pbr
 
 ---
  novaclient/__init__.py | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+ setup.py               | 1 -
+ 2 files changed, 1 insertion(+), 5 deletions(-)
 
 diff --git a/novaclient/__init__.py b/novaclient/__init__.py
 index bfa7553..18e8783 100644
@@ -20,3 +21,13 @@ index bfa7553..18e8783 100644
 -
 -__version__ = pbr.version.VersionInfo('python-novaclient').version_string()
 +__version__ = "REDHATNOVACLIENTVERSION"
+diff --git a/setup.py b/setup.py
+index 70c2b3f..afab729 100644
+--- a/setup.py
++++ b/setup.py
+@@ -18,5 +18,4 @@
+ import setuptools
+ 
+ setuptools.setup(
+-    setup_requires=['pbr'],
+     pbr=True)
