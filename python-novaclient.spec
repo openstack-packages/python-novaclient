@@ -1,7 +1,7 @@
 Name:             python-novaclient
 Epoch:            1
-Version:          2.16.0
-Release:          2%{?dist}
+Version:          2.17.0
+Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Nova
 
 Group:            Development/Languages
@@ -11,7 +11,7 @@ Source0:          http://pypi.python.org/packages/source/p/%{name}/%{name}-%{ver
 
 
 #
-# patches_base=2.16.0
+# patches_base=2.17.0
 #
 Patch0001: 0001-Remove-runtime-dependency-on-python-pbr.patch
 
@@ -97,6 +97,9 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Tue Mar 25 2014 Jakub Ruzicka <jruzicka@redhat.com> 1:2.17.0-1
+- Update to upstream 2.17.0
+
 * Wed Feb 26 2014 Jakub Ruzicka <jruzicka@redhat.com> 2.16.0-2
 - Update to upstream 2.16.0
 
