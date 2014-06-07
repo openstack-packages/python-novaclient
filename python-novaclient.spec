@@ -1,7 +1,7 @@
 Name:             python-novaclient
 Epoch:            1
 Version:          2.17.0
-Release:          2%{?dist}
+Release:          3%{?dist}
 Summary:          Python API and CLI for OpenStack Nova
 
 Group:            Development/Languages
@@ -107,6 +107,9 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:2.17.0-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
 * Tue May 27 2014 Jakub Ruzicka <jruzicka@redhat.com> 1:2.17.0-2
 - Selective backports (server groups and more)
 - Nova CLI for server groups (rhbz#1101014)
