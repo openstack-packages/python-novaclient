@@ -1,7 +1,7 @@
 Name:             python-novaclient
 Epoch:            1
-Version:          2.17.0
-Release:          3%{?dist}
+Version:          XXX
+Release:          XXX{?dist}
 Summary:          Python API and CLI for OpenStack Nova
 
 Group:            Development/Languages
@@ -9,10 +9,6 @@ License:          ASL 2.0
 URL:              http://pypi.python.org/pypi/%{name}
 Source0:          http://pypi.python.org/packages/source/p/%{name}/%{name}-%{version}.tar.gz
 
-
-#
-# patches_base=2.17.0
-#
 Patch0001: 0001-Remove-runtime-dependency-on-python-pbr.patch
 
 BuildArch:        noarch
@@ -23,11 +19,13 @@ BuildRequires:    python-pbr
 
 Requires:         python-argparse
 Requires:         python-iso8601
+Requires:         python-oslo-utils
 Requires:         python-prettytable
 Requires:         python-requests
 Requires:         python-simplejson
 Requires:         python-six
 Requires:         python-babel
+Requires:         python-keystoneclient
 Requires:         python-keyring
 Requires:         python-setuptools
 
@@ -51,7 +49,7 @@ the OpenStack Nova API.
 This package contains auto-generated documentation.
 
 %prep
-%setup -q -n python-novaclient-%{upstream_version}
+%setup -q -n %{name}-%{upstream_version}
 
 %patch0001 -p1
 
@@ -98,6 +96,15 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Fri Oct 03 2014 Jakub Ruzicka <jruzicka@redhat.com> 1:2.20.0-1
+- Update to upstream 2.20.0
+- New Requires: python-oslo-utils, python-keystoneclient
+
+* Wed Aug 13 2014 Jakub Ruzicka <jruzicka@redhat.com> 1:2.18.1-1
+- Update to upstream 2.18.1
+- New Requires: python-oslo-sphinx
+- Use oslo.sphinx instead of oslosphinx
+
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:2.17.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
