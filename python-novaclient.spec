@@ -12,28 +12,29 @@ URL:              http://pypi.python.org/pypi/%{name}
 Source0:          http://pypi.python.org/packages/source/p/%{name}/%{name}-%{version}.tar.gz
 
 BuildArch:        noarch
-BuildRequires:    python-setuptools
 BuildRequires:    python2-devel
 BuildRequires:    python-d2to1
-BuildRequires:    python-pbr
 BuildRequires:    python-keystoneclient
 BuildRequires:    python-netifaces
+BuildRequires:    python-pbr
+BuildRequires:    python-setuptools
 
 Requires:         python-argparse
+Requires:         python-babel
 Requires:         python-iso8601
+Requires:         python-keyring
+Requires:         python-keystoneauth1
+Requires:         python-keystoneclient
+Requires:         python-netifaces
 Requires:         python-oslo-i18n
 Requires:         python-oslo-serialization
 Requires:         python-oslo-utils
+Requires:         python-pbr
 Requires:         python-prettytable
 Requires:         python-requests
 Requires:         python-simplejson
 Requires:         python-six
-Requires:         python-babel
-Requires:         python-keystoneclient
-Requires:         python-keyring
 Requires:         python-setuptools
-Requires:         python-pbr
-Requires:         python-netifaces
 
 %description
 This is a client for the OpenStack Nova API. There's a Python API (the
