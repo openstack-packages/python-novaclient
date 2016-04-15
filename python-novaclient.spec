@@ -2,7 +2,7 @@
 
 Name:             python-novaclient
 Epoch:            1
-Version:          3.3.0
+Version:          3.3.1
 Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Nova
 
@@ -97,6 +97,9 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Fri Apr 15 2016 Haikel Guemar <hguemar@fedoraproject.org> 1:3.3.1-1
+- Update to 3.3.1
+
 * Wed Mar 23 2016 Haikel Guemar <hguemar@fedoraproject.org> 1:3.3.0-
 - Update to 3.3.0
 
